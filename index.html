@@ -6,187 +6,91 @@
 <title>Painel Financeiro — Maestro</title>
 <style>
   :root {
-    --bg: #f7f6f3;
-    --surface: #ffffff;
-    --border: #e2e0d8;
-    --text-primary: #1a1a18;
-    --text-secondary: #6b6a65;
-    --text-muted: #9e9d98;
-    --green: #1D9E75;
-    --green-light: #E1F5EE;
-    --red: #D85A30;
-    --red-light: #FAECE7;
-    --amber: #BA7517;
-    --amber-light: #FAEEDA;
-    --blue: #185FA5;
-    --blue-light: #E6F1FB;
-    --gray: #5F5E5A;
-    --gray-light: #F1EFE8;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg: #f7f6f3; --surface: #ffffff; --border: #e2e0d8;
+    --text-primary: #1a1a18; --text-secondary: #6b6a65; --text-muted: #9e9d98;
+    --green: #1D9E75; --green-light: #E1F5EE;
+    --red: #D85A30; --red-light: #FAECE7;
+    --amber: #BA7517; --amber-light: #FAEEDA;
+    --blue: #185FA5; --blue-light: #E6F1FB;
+    --purple: #7A5AA8; --purple-light: #EFE9F6;
+    --gray: #5F5E5A; --gray-light: #F1EFE8;
+    --radius: 10px; --radius-sm: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text-primary);
-    font-size: 14px;
-    line-height: 1.5;
-    min-height: 100vh;
-  }
-  .header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    flex-wrap: wrap;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.5; min-height: 100vh; }
+  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; position: sticky; top: 0; z-index: 10; flex-wrap: wrap; }
   .header-left h1 { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
   .header-left p { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
   .header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .status-badge {
-    font-size: 11px; padding: 3px 10px;
-    border-radius: 20px; font-weight: 500;
-  }
+  .status-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
   .badge-ok { background: var(--green-light); color: #085041; }
   .badge-warn { background: var(--amber-light); color: #633806; }
   .badge-err { background: var(--red-light); color: #4A1B0C; }
   .badge-info { background: var(--blue-light); color: #042C53; }
-  button.sync-btn {
-    background: var(--text-primary); color: #fff; border: none;
-    border-radius: var(--radius-sm); padding: 8px 14px;
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    display: flex; align-items: center; gap: 6px;
-    transition: opacity .15s; min-height: 36px;
-  }
+  button.sync-btn { background: var(--text-primary); color: #fff; border: none; border-radius: var(--radius-sm); padding: 8px 14px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: opacity .15s; min-height: 36px; }
   button.sync-btn:hover { opacity: .8; }
   button.sync-btn:disabled { opacity: .4; cursor: not-allowed; }
   .sync-icon { font-size: 14px; }
   .last-sync { font-size: 11px; color: var(--text-muted); }
   main { padding: 16px; max-width: 1100px; margin: 0 auto; }
-  .grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px; margin-bottom: 14px;
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px; margin-bottom: 14px;
-  }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px; margin-bottom: 14px;
-  }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-  }
-  .card-title {
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .6px;
-    color: var(--text-muted); margin-bottom: 10px;
-  }
-  .metric-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-  }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  .card-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: var(--text-muted); margin-bottom: 10px; }
+  .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
   .metric-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 3px; }
   .metric-value { font-size: 18px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.2; }
   .metric-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-  .metric-green { color: var(--green); }
-  .metric-red { color: var(--red); }
-  .metric-amber { color: var(--amber); }
-  .metric-blue { color: var(--blue); }
-  .metric-gray { color: var(--gray); }
+  .metric-green { color: var(--green); } .metric-red { color: var(--red); }
+  .metric-amber { color: var(--amber); } .metric-blue { color: var(--blue); } .metric-gray { color: var(--gray); }
   .divider { height: 1px; background: var(--border); margin: 10px 0; }
   table.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  table.data-table th {
-    text-align: left; font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .5px;
-    color: var(--text-muted); padding: 0 6px 7px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  table.data-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); padding: 0 6px 7px 0; border-bottom: 1px solid var(--border); }
   table.data-table th:last-child { text-align: right; padding-right: 0; }
-  table.data-table td {
-    padding: 7px 6px 7px 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-primary); vertical-align: middle;
-  }
+  table.data-table td { padding: 7px 6px 7px 0; border-bottom: 1px solid var(--border); color: var(--text-primary); vertical-align: middle; }
   table.data-table td:last-child { text-align: right; padding-right: 0; }
   table.data-table tr:last-child td { border-bottom: none; }
-  .pill {
-    display: inline-block; font-size: 10px; font-weight: 500;
-    padding: 2px 7px; border-radius: 20px; white-space: nowrap;
-  }
+  .pill { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
   .pill-red { background: var(--red-light); color: #993C1D; }
   .pill-green { background: var(--green-light); color: #0F6E56; }
   .pill-amber { background: var(--amber-light); color: #854F0B; }
   .pill-blue { background: var(--blue-light); color: #185FA5; }
+  .pill-purple { background: var(--purple-light); color: #574180; }
   .pill-gray { background: var(--gray-light); color: #444441; }
   .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 11px; }
   .bar-label { width: 52px; color: var(--text-secondary); flex-shrink: 0; }
   .bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 4px; }
   .bar-value { width: 76px; text-align: right; font-weight: 500; flex-shrink: 0; }
-  .agenda-item {
-    display: flex; gap: 10px; padding: 10px 0;
-    border-bottom: 1px solid var(--border); align-items: flex-start;
-  }
+  /* Teto rows */
+  .teto-row { padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .teto-row:last-child { border-bottom: none; }
+  .teto-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 5px; }
+  .teto-cat { font-size: 12px; font-weight: 500; }
+  .teto-nums { font-size: 11px; color: var(--text-secondary); white-space: nowrap; }
+  .teto-nums b { color: var(--text-primary); font-weight: 600; }
+  .teto-track { height: 7px; background: var(--gray-light); border-radius: 4px; overflow: hidden; }
+  .teto-fill { height: 100%; border-radius: 4px; transition: width .4s ease; }
+  .agenda-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
   .agenda-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .agenda-date {
-    background: var(--gray-light); border-radius: var(--radius-sm);
-    padding: 4px 8px; text-align: center; min-width: 40px; flex-shrink: 0;
-  }
+  .agenda-date { background: var(--gray-light); border-radius: var(--radius-sm); padding: 4px 8px; text-align: center; min-width: 40px; flex-shrink: 0; }
   .agenda-date .day { font-size: 15px; font-weight: 700; line-height: 1; }
   .agenda-date .month { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); }
   .agenda-content { flex: 1; min-width: 0; }
   .agenda-title { font-size: 12px; font-weight: 500; }
   .agenda-items-list { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
   .agenda-value { font-size: 13px; font-weight: 600; color: var(--red); flex-shrink: 0; }
-  .regra-item {
-    display: flex; align-items: flex-start; gap: 8px;
-    padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px;
-  }
+  .regra-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
   .regra-item:last-child { border-bottom: none; }
   .regra-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); margin-top: 5px; flex-shrink: 0; }
-  .section-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .6px; color: var(--text-muted); margin: 18px 0 9px;
-  }
-  .alert-banner {
-    background: var(--red-light); border: 1px solid #F0997B;
-    border-radius: var(--radius); padding: 9px 12px;
-    font-size: 12px; color: #4A1B0C; margin-bottom: 12px;
-    display: flex; align-items: flex-start; gap: 7px;
-  }
-  .cgi-banner {
-    background: var(--blue-light); border: 1px solid #85B7EB;
-    border-radius: var(--radius); padding: 9px 12px;
-    font-size: 12px; color: #042C53; margin-bottom: 12px;
-    display: flex; align-items: flex-start; gap: 7px;
-  }
-  #gastos-manual {
-    font-size: 11px; color: var(--text-muted);
-    font-style: italic; text-align: center; padding: 10px 0;
-  }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: var(--text-muted); margin: 18px 0 9px; }
+  .alert-banner { background: var(--red-light); border: 1px solid #F0997B; border-radius: var(--radius); padding: 9px 12px; font-size: 12px; color: #4A1B0C; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 7px; }
+  .cgi-banner { background: var(--blue-light); border: 1px solid #85B7EB; border-radius: var(--radius); padding: 9px 12px; font-size: 12px; color: #042C53; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 7px; }
+  #gastos-manual { font-size: 11px; color: var(--text-muted); font-style: italic; text-align: center; padding: 10px 0; }
   .gastos-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .gastos-card-list { display: none; }
-  .gasto-card {
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
-  }
+  .gasto-card { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
   .gasto-card:last-child { border-bottom: none; }
   .gasto-card-left { flex: 1; min-width: 0; }
   .gasto-card-desc { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
@@ -194,12 +98,7 @@
   .gasto-card-right { text-align: right; flex-shrink: 0; }
   .gasto-card-valor { font-size: 14px; font-weight: 600; }
   .gasto-card-data { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-  .web-app-url-input {
-    width: 100%; font-size: 11px; padding: 8px 10px;
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    color: var(--text-primary); background: var(--bg);
-    margin-top: 8px; font-family: monospace;
-  }
+  .web-app-url-input { width: 100%; font-size: 11px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); background: var(--bg); margin-top: 8px; font-family: monospace; }
   @media (max-width: 640px) {
     main { padding: 12px; }
     .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -207,8 +106,7 @@
     .metric-value { font-size: 16px; }
     .header { padding: 10px 12px; }
     .header-left h1 { font-size: 14px; }
-    .last-sync { display: none; }
-    .status-badge { display: none; }
+    .last-sync, .status-badge { display: none; }
     .gastos-scroll { display: none; }
     .gastos-card-list { display: block; }
     table.data-table { font-size: 11px; }
@@ -222,11 +120,11 @@
 <div class="header">
   <div class="header-left">
     <h1>Painel Financeiro Maestro</h1>
-    <p id="posicao-texto">Posição: 11/06/2026 — documento de memória</p>
+    <p id="posicao-texto">Posição: 13/06/2026 — dados em cache</p>
   </div>
   <div class="header-right">
     <span class="last-sync" id="last-sync-label"></span>
-    <span class="status-badge badge-warn" id="sync-status">Web App offline</span>
+    <span class="status-badge badge-warn" id="sync-status">Clique Atualizar</span>
     <button class="sync-btn" id="btn-sync" onclick="syncPlanilha()">
       <span class="sync-icon">⟳</span> Atualizar
     </button>
@@ -248,7 +146,7 @@
     <div class="metric-card">
       <div class="metric-label">Receita bruta</div>
       <div class="metric-value metric-green">R$ 50.710</div>
-      <div class="metric-sub">NF Renato + NF Mariana</div>
+      <div class="metric-sub">NF Renato + Mariana</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Base fixa</div>
@@ -261,9 +159,39 @@
       <div class="metric-sub">Receita − base fixa</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Meta poupança</div>
-      <div class="metric-value metric-gray">20%</div>
-      <div class="metric-sub">Suspensa — ativa ago/27</div>
+      <div class="metric-label">Folga após tetos</div>
+      <div class="metric-value metric-red">R$ 896</div>
+      <div class="metric-sub">14.422 − 13.526 tetos</div>
+    </div>
+  </div>
+
+  <div class="section-label">Tetos por Categoria — Junho/2026</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Consumo vs teto (mês corrente)</div>
+      <div id="tetos-container">
+        <!-- preenchido via JS; seed estático abaixo -->
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Resumo dos tetos</div>
+      <table class="data-table">
+        <thead><tr><th>Indicador</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Soma dos tetos</td><td>R$ 13.526</td></tr>
+          <tr><td>Gasto até agora (jun)</td><td id="resumo-gasto">R$ 5.286</td></tr>
+          <tr><td>Disponível no mês</td><td id="resumo-disp" style="color:var(--green);font-weight:600">R$ 8.240</td></tr>
+          <tr><td>Margem variável</td><td>R$ 14.422</td></tr>
+          <tr><td>Folga (margem − tetos)</td><td style="color:var(--red);font-weight:600">R$ 896</td></tr>
+        </tbody>
+      </table>
+      <div class="divider"></div>
+      <div style="font-size:11px;color:var(--text-secondary)">
+        <strong>3 novas categorias</strong> (R$ 3.826) são <strong>realocação</strong>, não gasto novo:<br>
+        Cuidados Pessoais R$860 · Não Essenciais R$1.190 · Não Planejados R$1.776<br><br>
+        Envelope total de variáveis <strong>inalterado</strong> — ganho é só de visibilidade.<br><br>
+        <strong style="color:var(--red)">⚠ Não Planejados em 100%</strong> — o parcelamento da fatura (R$1.775,87), antes em Casa/Manutenção, agora vive aqui.
+      </div>
     </div>
   </div>
 
@@ -280,9 +208,7 @@
           <tr><td>Pedreiro muro</td><td>R$ 5.000,00</td></tr>
           <tr><td>Jardineiro + piscineiro</td><td>R$ 540,00</td></tr>
         </tbody>
-        <tfoot>
-          <tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--red);padding-top:9px;border-top:1px solid var(--border)">R$ 14.710,36</td></tr>
-        </tfoot>
+        <tfoot><tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--red);padding-top:9px;border-top:1px solid var(--border)">R$ 14.710,36</td></tr></tfoot>
       </table>
     </div>
     <div class="card">
@@ -294,9 +220,7 @@
           <tr><td>Simples Nacional</td><td>R$ 1.350,00</td></tr>
           <tr><td>GPS Mariana</td><td>R$ 550,00</td></tr>
         </tbody>
-        <tfoot>
-          <tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--amber);padding-top:9px;border-top:1px solid var(--border)">R$ 2.200,00</td></tr>
-        </tfoot>
+        <tfoot><tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--amber);padding-top:9px;border-top:1px solid var(--border)">R$ 2.200,00</td></tr></tfoot>
       </table>
     </div>
     <div class="card">
@@ -308,9 +232,7 @@
           <tr><td>Simples jun/26</td><td>R$ 392,11</td></tr>
           <tr><td>Multa estimada</td><td>R$ 86,00</td></tr>
         </tbody>
-        <tfoot>
-          <tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--amber);padding-top:9px;border-top:1px solid var(--border)">R$ 2.942,76</td></tr>
-        </tfoot>
+        <tfoot><tr><td style="font-weight:600;padding-top:9px;border-top:1px solid var(--border)">Total</td><td style="font-weight:600;color:var(--amber);padding-top:9px;border-top:1px solid var(--border)">R$ 2.942,76</td></tr></tfoot>
       </table>
     </div>
   </div>
@@ -344,36 +266,12 @@
     <div class="card">
       <div class="card-title">Evolução do peso total</div>
       <div style="margin-top:4px">
-        <div class="bar-row">
-          <div class="bar-label">Jun/26</div>
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div>
-          <div class="bar-value metric-red">~R$ 15.123</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">Jul/26</div>
-          <div class="bar-track"><div class="bar-fill" style="width:91%;background:var(--red)"></div></div>
-          <div class="bar-value metric-red">~R$ 13.728</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">Ago/26</div>
-          <div class="bar-track"><div class="bar-fill" style="width:66%;background:var(--amber)"></div></div>
-          <div class="bar-value metric-amber">~R$ 9.936</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">Set/26</div>
-          <div class="bar-track"><div class="bar-fill" style="width:51%;background:var(--amber)"></div></div>
-          <div class="bar-value metric-amber">~R$ 7.696</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">Out/26</div>
-          <div class="bar-track"><div class="bar-fill" style="width:36%;background:var(--green)"></div></div>
-          <div class="bar-value metric-green">~R$ 5.457</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">Nov/26+</div>
-          <div class="bar-track"><div class="bar-fill" style="width:29%;background:var(--green)"></div></div>
-          <div class="bar-value metric-green">~R$ 4.453</div>
-        </div>
+        <div class="bar-row"><div class="bar-label">Jun/26</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div><div class="bar-value metric-red">~R$ 15.123</div></div>
+        <div class="bar-row"><div class="bar-label">Jul/26</div><div class="bar-track"><div class="bar-fill" style="width:91%;background:var(--red)"></div></div><div class="bar-value metric-red">~R$ 13.728</div></div>
+        <div class="bar-row"><div class="bar-label">Ago/26</div><div class="bar-track"><div class="bar-fill" style="width:66%;background:var(--amber)"></div></div><div class="bar-value metric-amber">~R$ 9.936</div></div>
+        <div class="bar-row"><div class="bar-label">Set/26</div><div class="bar-track"><div class="bar-fill" style="width:51%;background:var(--amber)"></div></div><div class="bar-value metric-amber">~R$ 7.696</div></div>
+        <div class="bar-row"><div class="bar-label">Out/26</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:var(--green)"></div></div><div class="bar-value metric-green">~R$ 5.457</div></div>
+        <div class="bar-row"><div class="bar-label">Nov/26+</div><div class="bar-track"><div class="bar-fill" style="width:29%;background:var(--green)"></div></div><div class="bar-value metric-green">~R$ 4.453</div></div>
       </div>
       <div class="divider"></div>
       <div style="font-size:11px;color:var(--text-secondary)">
@@ -387,84 +285,35 @@
   <div class="card" style="margin-bottom:14px">
     <div class="agenda-item">
       <div class="agenda-date"><div class="day">15</div><div class="month">JUN</div></div>
-      <div class="agenda-content">
-        <div class="agenda-title">CGI cai + pagamentos urgentes</div>
-        <div class="agenda-items-list">Déficit C6 · PM Jandira · Itaú Renato · Pedreiro · Jardineiro</div>
-      </div>
+      <div class="agenda-content"><div class="agenda-title">CGI cai + pagamentos urgentes</div><div class="agenda-items-list">Déficit C6 · PM Jandira · Itaú Renato · Pedreiro · Jardineiro</div></div>
       <div class="agenda-value">R$ 14.710</div>
     </div>
     <div class="agenda-item">
       <div class="agenda-date"><div class="day">20</div><div class="month">JUN</div></div>
-      <div class="agenda-content">
-        <div class="agenda-title">Impostos Mariana</div>
-        <div class="agenda-items-list">Contador R$300 · Simples R$1.350 · GPS R$550</div>
-      </div>
+      <div class="agenda-content"><div class="agenda-title">Impostos Mariana</div><div class="agenda-items-list">Contador R$300 · Simples R$1.350 · GPS R$550</div></div>
       <div class="agenda-value" style="color:var(--amber)">R$ 2.200</div>
     </div>
     <div class="agenda-item">
       <div class="agenda-date" style="background:var(--red-light)"><div class="day" style="color:var(--red)">01</div><div class="month" style="color:var(--red)">JUL</div></div>
-      <div class="agenda-content">
-        <div class="agenda-title">Simples Renato atrasado + multa</div>
-        <div class="agenda-items-list">NFs entram → R$2.465 + R$392 + ~R$86 multa</div>
-      </div>
+      <div class="agenda-content"><div class="agenda-title">Simples Renato atrasado + multa</div><div class="agenda-items-list">NFs entram → R$2.465 + R$392 + ~R$86 multa</div></div>
       <div class="agenda-value">R$ 2.943</div>
     </div>
   </div>
 
   <div class="section-label">Gastos Variáveis — Últimos 5 dias</div>
   <div class="card" style="margin-bottom:14px">
-
     <div class="gastos-scroll">
       <table class="data-table" id="tabela-gastos">
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Descrição</th>
-            <th>Categoria</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Valor</th></tr></thead>
         <tbody id="gastos-tbody">
-          <tr>
-            <td>11/06/2026</td>
-            <td>água almoço</td>
-            <td><span class="pill pill-amber">Restaurante / Alimentação fora</span></td>
-            <td>R$ 6,00</td>
-          </tr>
-          <tr>
-            <td>~Jun/26</td>
-            <td>Blazer Fispal (previsto)</td>
-            <td><span class="pill pill-blue">Outros / Lazer</span></td>
-            <td>R$ 600,00</td>
-          </tr>
+          <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:14px">Clique em <strong>Atualizar</strong> para carregar os lançamentos.</td></tr>
         </tbody>
       </table>
     </div>
-
     <div class="gastos-card-list" id="gastos-cards">
-      <div class="gasto-card">
-        <div class="gasto-card-left">
-          <div class="gasto-card-desc">água almoço</div>
-          <div class="gasto-card-meta"><span class="pill pill-amber">Restaurante</span> · C6 Carbon</div>
-        </div>
-        <div class="gasto-card-right">
-          <div class="gasto-card-valor">R$ 6,00</div>
-          <div class="gasto-card-data">11/06/2026</div>
-        </div>
-      </div>
-      <div class="gasto-card">
-        <div class="gasto-card-left">
-          <div class="gasto-card-desc">Blazer Fispal (previsto)</div>
-          <div class="gasto-card-meta"><span class="pill pill-blue">Outros/Lazer</span> · C6 Carbon</div>
-        </div>
-        <div class="gasto-card-right">
-          <div class="gasto-card-valor">R$ 600,00</div>
-          <div class="gasto-card-data">~Jun/26</div>
-        </div>
-      </div>
+      <div style="text-align:center;color:var(--text-muted);padding:14px;font-size:12px">Clique em <strong>Atualizar</strong> para carregar.</div>
     </div>
-
-    <div id="gastos-manual">Dados manuais desta sessão. Conecte o Web App para sincronizar.</div>
+    <div id="gastos-manual">Conecte o Web App para sincronizar os últimos lançamentos.</div>
   </div>
 
   <div class="section-label">Regras Inegociáveis</div>
@@ -475,7 +324,6 @@
     <div class="regra-item"><div class="regra-dot"></div><div>Parcelas CGI: não usar para outros fins — obra é prioridade</div></div>
     <div class="regra-item"><div class="regra-dot"></div><div>Revisão semanal todo domingo no app C6</div></div>
     <div class="regra-item"><div class="regra-dot"></div><div>Estourou o teto? Compensar no mês seguinte</div></div>
-    <div class="regra-item"><div class="regra-dot"></div><div>Não usar Meister Pack nem Itaú para gastos variáveis pessoais</div></div>
     <div class="regra-item"><div class="regra-dot" style="background:var(--amber)"></div><div>Meta de 20% poupança suspensa enquanto CGI estiver em amortização ativa</div></div>
   </div>
 
@@ -483,8 +331,7 @@
     <div class="card-title">Configurar Web App</div>
     <div style="font-size:12px;color:var(--text-secondary)">URL do Apps Script para sincronização:</div>
     <input class="web-app-url-input" type="text" id="webapp-url"
-      placeholder="https://script.google.com/macros/s/.../exec"
-      value="https://script.google.com/macros/s/AKfycbyBZ-zq7ulMoJYswKtUfHxc1Dpapqnoi5EmC4Rt2QQjI5d0ZWViav8h8Pl3F4NzYfV23w/exec">
+      value="https://script.google.com/macros/s/AKfycbz_H4UwQfaxNlfb3ELMZEatHdXwVO9W6faXkT1cD7iHE7o7hKdIX8beKfuQosZm7zBobw/exec">
     <div style="margin-top:6px;font-size:11px;color:var(--text-muted)">Atualize quando republicar o Web App no Apps Script.</div>
   </div>
 
@@ -493,15 +340,83 @@
 <script>
 const CAT_CLASS = {
   'Restaurante / Alimentação fora': 'pill-amber',
-  'Supermercado': 'pill-green',
+  'Supermercado / Farmácia': 'pill-green',
   'Saúde / Farmácia extra': 'pill-blue',
-  'Transporte': 'pill-gray',
+  'Transporte / Uber / Combustível': 'pill-gray',
   'Presentes': 'pill-red',
-  'Casa/Manutenção': 'pill-gray',
-  'Outros / Lazer': 'pill-blue'
+  'Casa / Manutenção e Reparos': 'pill-gray',
+  'Outros / Lazer': 'pill-blue',
+  'Cuidados Pessoais': 'pill-purple',
+  'Não Essenciais': 'pill-amber',
+  'Não Planejados': 'pill-red'
 };
 
-function isMobile() { return window.innerWidth <= 640; }
+// Seed estático (último cálculo conhecido — jun/2026)
+const SEED_TETOS = [
+  {categoria:'Restaurante / Alimentação fora', teto:4000, gasto:1739.55},
+  {categoria:'Supermercado / Farmácia', teto:3000, gasto:604.61},
+  {categoria:'Presentes', teto:1000, gasto:174.70},
+  {categoria:'Saúde / Farmácia extra', teto:500, gasto:223.95},
+  {categoria:'Transporte / Uber / Combustível', teto:400, gasto:156.19},
+  {categoria:'Outros / Lazer', teto:300, gasto:131.70},
+  {categoria:'Casa / Manutenção e Reparos', teto:500, gasto:19.74},
+  {categoria:'Cuidados Pessoais', teto:860, gasto:460.00},
+  {categoria:'Não Essenciais', teto:1190, gasto:0},
+  {categoria:'Não Planejados', teto:1776, gasto:1775.87}
+];
+
+function fmtBRL(v) { return 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR', {minimumFractionDigits:2}); }
+function fmtBRL0(v) { return 'R$ ' + parseFloat(v||0).toLocaleString('pt-BR', {maximumFractionDigits:0}); }
+
+function corPct(pct) {
+  if (pct >= 95) return 'var(--red)';
+  if (pct >= 80) return 'var(--amber)';
+  return 'var(--green)';
+}
+
+function renderTetos(lista) {
+  const cont = document.getElementById('tetos-container');
+  cont.innerHTML = '';
+  let totalTeto = 0, totalGasto = 0;
+  // ordena por % consumido desc
+  lista.sort((a,b) => (b.gasto/b.teto) - (a.gasto/a.teto));
+  lista.forEach(t => {
+    totalTeto += t.teto; totalGasto += t.gasto;
+    const pct = t.teto ? (t.gasto/t.teto*100) : 0;
+    const cor = corPct(pct);
+    cont.innerHTML += `<div class="teto-row">
+      <div class="teto-head">
+        <span class="teto-cat">${t.categoria}</span>
+        <span class="teto-nums"><b>${fmtBRL(t.gasto)}</b> / ${fmtBRL0(t.teto)} · ${pct.toFixed(0)}%</span>
+      </div>
+      <div class="teto-track"><div class="teto-fill" style="width:${Math.min(pct,100)}%;background:${cor}"></div></div>
+    </div>`;
+  });
+  document.getElementById('resumo-gasto').textContent = fmtBRL0(totalGasto);
+  document.getElementById('resumo-disp').textContent = fmtBRL0(totalTeto - totalGasto);
+}
+
+function renderGastos(gastos) {
+  const tbody = document.getElementById('gastos-tbody');
+  const cardsEl = document.getElementById('gastos-cards');
+  const manual = document.getElementById('gastos-manual');
+  tbody.innerHTML = ''; cardsEl.innerHTML = '';
+  if (!gastos.length) {
+    const m = '<em>Nenhum lançamento nos últimos 5 dias.</em>';
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:14px">${m}</td></tr>`;
+    cardsEl.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:14px;font-size:12px">${m}</div>`;
+    return;
+  }
+  gastos.forEach(g => {
+    const cat = g.categoria || '', desc = g.descricao || '';
+    const dataFmt = g.data ? new Date(g.data).toLocaleDateString('pt-BR') : '';
+    const valorFmt = fmtBRL(g.valor);
+    const catClass = CAT_CLASS[cat.trim()] || 'pill-gray';
+    tbody.innerHTML += `<tr><td>${dataFmt}</td><td>${desc}</td><td><span class="pill ${catClass}">${cat}</span></td><td>${valorFmt}</td></tr>`;
+    cardsEl.innerHTML += `<div class="gasto-card"><div class="gasto-card-left"><div class="gasto-card-desc">${desc}</div><div class="gasto-card-meta"><span class="pill ${catClass}">${cat}</span></div></div><div class="gasto-card-right"><div class="gasto-card-valor">${valorFmt}</div><div class="gasto-card-data">${dataFmt}</div></div></div>`;
+  });
+  manual.textContent = gastos.length + ' lançamento(s) — últimos 5 dias, mais recente primeiro.';
+}
 
 async function syncPlanilha() {
   const btn = document.getElementById('btn-sync');
@@ -513,28 +428,42 @@ async function syncPlanilha() {
   status.className = 'status-badge badge-info';
   status.textContent = 'Conectando...';
   try {
-    const resp = await fetch(url + '?acao=listar', { method: 'GET' });
+    const resp = await fetch(url, { method: 'GET' });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const data = await resp.json();
-    if (data && data.gastos && Array.isArray(data.gastos)) {
-      const hoje = new Date();
-      const cincoAtras = new Date(hoje);
-      cincoAtras.setDate(hoje.getDate() - 5);
-      const limpos = data.gastos
-        .filter(g => {
-          if (!g.data || !g.valor || isNaN(parseFloat(g.valor))) return false;
-          const d = new Date(g.data);
-          return d >= cincoAtras;
-        })
-        .sort((a, b) => new Date(b.data) - new Date(a.data));
-      renderGastos(limpos);
-      status.className = 'status-badge badge-ok';
-      status.textContent = 'Sincronizado';
-      document.getElementById('posicao-texto').textContent =
-        'Atualizado: ' + new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
-    } else {
-      throw new Error('Formato inesperado');
+    const gastos = (data.gastos || []).filter(g => g.data && g.valor && !isNaN(parseFloat(g.valor)));
+
+    // --- Gastos últimos 5 dias ---
+    const hoje = new Date();
+    const cincoAtras = new Date(hoje); cincoAtras.setDate(hoje.getDate() - 5);
+    const ultimos = gastos
+      .filter(g => new Date(g.data) >= cincoAtras)
+      .sort((a,b) => new Date(b.data) - new Date(a.data));
+    renderGastos(ultimos);
+
+    // --- Tetos: soma do mês corrente por categoria ---
+    const tetos = data.tetos || [];
+    if (tetos.length) {
+      const ym = new Date().toISOString().slice(0,7); // ex 2026-06
+      const somaCat = {};
+      gastos.forEach(g => {
+        if ((g.data || '').slice(0,7) === ym) {
+          const c = (g.categoria || '').trim();
+          somaCat[c] = (somaCat[c] || 0) + parseFloat(g.valor);
+        }
+      });
+      const lista = tetos.map(t => ({
+        categoria: t.categoria,
+        teto: t.teto,
+        gasto: somaCat[(t.categoria || '').trim()] || 0
+      }));
+      renderTetos(lista);
     }
+
+    status.className = 'status-badge badge-ok';
+    status.textContent = 'Sincronizado';
+    document.getElementById('posicao-texto').textContent =
+      'Atualizado: ' + new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
   } catch(err) {
     status.className = 'status-badge badge-err';
     status.textContent = 'Erro: ' + err.message;
@@ -546,46 +475,8 @@ async function syncPlanilha() {
   }
 }
 
-function renderGastos(gastos) {
-  const tbody = document.getElementById('gastos-tbody');
-  const cardsEl = document.getElementById('gastos-cards');
-  const manual = document.getElementById('gastos-manual');
-  tbody.innerHTML = '';
-  cardsEl.innerHTML = '';
-
-  if (!gastos.length) {
-    const emptyMsg = '<em>Nenhum lançamento nos últimos 5 dias.</em>';
-    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:14px">${emptyMsg}</td></tr>`;
-    cardsEl.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:14px;font-size:12px">${emptyMsg}</div>`;
-  } else {
-    gastos.forEach(g => {
-      const categoria = g.categoria || '';
-      const descricao = g.descricao || '';
-      const dataFmt = g.data ? new Date(g.data).toLocaleDateString('pt-BR') : '';
-      const valorFmt = 'R$ ' + parseFloat(g.valor || 0).toLocaleString('pt-BR', {minimumFractionDigits:2});
-      const catClass = CAT_CLASS[categoria] || 'pill-gray';
-
-      tbody.innerHTML += `<tr>
-        <td>${dataFmt}</td>
-        <td>${descricao}</td>
-        <td><span class="pill ${catClass}">${categoria}</span></td>
-        <td>${valorFmt}</td>
-      </tr>`;
-
-      cardsEl.innerHTML += `<div class="gasto-card">
-        <div class="gasto-card-left">
-          <div class="gasto-card-desc">${descricao}</div>
-          <div class="gasto-card-meta"><span class="pill ${catClass}">${categoria}</span></div>
-        </div>
-        <div class="gasto-card-right">
-          <div class="gasto-card-valor">${valorFmt}</div>
-          <div class="gasto-card-data">${dataFmt}</div>
-        </div>
-      </div>`;
-    });
-    manual.textContent = gastos.length + ' lançamento(s) — últimos 5 dias, mais recente primeiro.';
-  }
-}
+// render inicial com seed
+renderTetos(SEED_TETOS.map(x => ({...x})));
 </script>
 </body>
 </html>
